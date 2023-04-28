@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Anaximandre"
-date:   2022-12-14 00:00:00 +0100
+title: "HackMyVM - Anaximandre"
+date: 2022-12-14 00:00:00 +0100
 categories: hmv
 tag: ["WordPress", "LFI"]
 ---
-# Anaximandre
+# HackMyVM > Anaximandre
 
 Creator: [cromiphi](https://hackmyvm.eu/profile/?user=cromiphi)
 Level: Medium
