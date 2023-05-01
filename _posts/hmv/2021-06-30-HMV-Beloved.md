@@ -5,7 +5,6 @@ date: 2021-06-30 01:49:00 +0100
 categories: hmv
 tag: ["WordPress", "RCE", "Wildcard"]
 ---
-# HackMyVM > BELOVED
 
 Creator: [cromiphi](https://hackmyvm.eu/profile/?user=cromiphi)
 Level: Easy

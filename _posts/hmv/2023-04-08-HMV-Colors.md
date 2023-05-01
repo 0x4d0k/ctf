@@ -5,7 +5,6 @@ date: 2023-04-08 00:00:00 +0100
 categories: hmv
 tag: ["IPv6", "PortKnocking", "Spoofing", "Binary"]
 ---
-# HackMyVM - Colors
 
 Creator: [pablo](https://hackmyvm.eu/profile/?user=pablo)
 Level: Medium
@@ -14,7 +13,7 @@ Release Date: 2023-02-23
 ## Scan
 
 ```bash
-$ nmap -sV -sC -oA scans/NerdHerd -p- 192.168.1.85
+$ nmap -sV -sC -oA scans/Colors -p- 192.168.1.85
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-08 21:02 WEST
 Nmap scan report for 192.168.1.85
 Host is up (0.00035s latency).

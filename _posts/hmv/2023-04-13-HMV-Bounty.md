@@ -5,7 +5,6 @@ date: 2023-04-13 00:00:00 +0100
 categories: hmv
 tag: ["CuteEditor", "RCE", "Gitea"]
 ---
-# HackMyVM > Bounty
 
 Creator: [sml](https://hackmyvm.eu/profile/?user=sml)
 Level: Medium

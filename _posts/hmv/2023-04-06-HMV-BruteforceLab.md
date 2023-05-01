@@ -4,7 +4,6 @@ title: "HackMyVM - Bruteforce Lab"
 date: 2023-04-06 23:56:33 +0100
 categories: hmv
 ---
-# HackMyVM > Bruteforce Lab
 
 Creator: [terminal](https://hackmyvm.eu/profile/?user=terminal)
 Level: Easy

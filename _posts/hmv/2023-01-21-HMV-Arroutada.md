@@ -5,7 +5,6 @@ date: 2023-01-21 22:05:00 +0100
 categories: hmv
 tag: ["PortForward", "RCE"]
 ---
-# HackMyVM > Arroutada
 
 Creator: [RiJaba1](https://hackmyvm.eu/profile/?user=RiJaba1)
 Level: Easy

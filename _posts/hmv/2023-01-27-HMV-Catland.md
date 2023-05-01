@@ -5,7 +5,6 @@ date: 2023-01-27 22:30:00 +0100
 categories: hmv
 tag: ["LFI", "MySQL", "Python"]
 ---
-# HackMyVM > CatLand
 
 Creator: [cromiphi](https://hackmyvm.eu/profile/?user=cromiphi)
 Level: Medium

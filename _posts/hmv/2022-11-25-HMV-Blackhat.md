@@ -5,7 +5,6 @@ date: 2022-11-25 02:10:00 +0100
 categories: hmv
 tag: ["Apache", "RCE"]
 ---
-# HackMyVM > Blackhat
 
 Creator: [cromiphi](https://hackmyvm.eu/profile/?user=cromiphi)
 Level: Easy
